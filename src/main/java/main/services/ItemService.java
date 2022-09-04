@@ -34,8 +34,11 @@ public class ItemService {
 
     }
 
+    //metoda delete
     public void delete(Integer id) {
         itemRepository.deleteById(id);
     }
+
+
 
 }

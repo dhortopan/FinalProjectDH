@@ -26,6 +26,9 @@ public class ItemController {
     }
 
     @PostMapping
+//    @PatchMapping
+    // @PatchMapping e similar cu @PostMapping - clientul e respononsabil sa trimita un json (payload) la server
+    // trebui sa specifice id-ul + noul continut care il rescrie pe cel actual
     public ItemResponse save(@Valid @RequestBody ItemRequest itemRequest) {
         return itemService.save(itemRequest);
     }
