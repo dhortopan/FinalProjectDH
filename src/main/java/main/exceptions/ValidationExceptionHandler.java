@@ -19,7 +19,7 @@ import java.util.List;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
-@Slf4j     // pt Logger
+@Slf4j     // pt Logger - adauga un camp
 @RestControllerAdvice
 public class ValidationExceptionHandler extends ResponseEntityExceptionHandler {
 
@@ -33,6 +33,7 @@ public class ValidationExceptionHandler extends ResponseEntityExceptionHandler {
     @Override     // pt a suprascrie mecanismul standard Java de scriere/afisare a exceptiilor
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
             MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        log.error("validation error", ex);  // cu aceasta linie loghez eroare in consola
         List<String> details = new ArrayList<>();
         for(ObjectError error : ex.getBindingResult().getAllErrors()) {
             details.add(error.toString());
