@@ -30,9 +30,11 @@ public class ValidationExceptionHandler extends ResponseEntityExceptionHandler {
 //    }
 
     //eroare specifica (nu Bad_Request) pt cazurile de fail  - si arata la client (in postman)
+    // loghez eroarea la linia 38
     @Override     // pt a suprascrie mecanismul standard Java de scriere/afisare a exceptiilor
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
             MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+
         log.error("validation error", ex);  // cu aceasta linie loghez eroare in consola
         List<String> details = new ArrayList<>();
         for(ObjectError error : ex.getBindingResult().getAllErrors()) {
